@@ -1,6 +1,6 @@
 ---
 title: "Initial Korean covid 19"
-author: "CIenna Baker-Salgado"
+author: "Cienna Baker-Salgado"
 date: "Fall 2024"
 output:
   html_document: default
@@ -44,20 +44,31 @@ barchartGC(~result + Sex,data=kRdata, type="percent")
 
 ```
 
-  
-
-
 The display on the bar chart shows that men have died at higher rates compared to women. 
 
 
   
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+Among the people who died, 64% of the population was men and the other 36% were women.
+
 
 ## Inferential results 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
-
+The p-value we found during the chi-squared test was 0.001 so we reject the null hypothesis. We can conclude that dying is dependent of sex. This leaves men 2.3 times as likely to die of COVID-19 compared to women in Korea.
 
 ## Conclusions
 
+Seeing out data, we can conclude that deaths based on COVID from Korea are dependent on sex. The Fisher's Exact Test, we find out that Korean men are 2.3 times as likely to die from COVID than women. Our p-value found from the chi-squared test is 0.001, which is less than 0.05. This leads to the rejection of the null hypothesis and the assumption of dying being dependent on sex.
